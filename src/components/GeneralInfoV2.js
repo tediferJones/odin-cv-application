@@ -58,7 +58,7 @@ class GeneralInfoV2 extends Component {
 
   render() {
     // const { firstname, outputFirstName } = this.state;
-    const GeneralInfoForm = 
+    const generalInfoForm = 
       <form onSubmit={this.onSubmit}>
         <h1>Your firstname is {this.state.data.fname}</h1>
         
@@ -78,7 +78,7 @@ class GeneralInfoV2 extends Component {
       </form>;
 
     // Add an edit button, just setup its own function like onSubmit that only toggles displayPretty
-    const GeneralInfoDisplay =
+    const generalInfoDisplay =
       <div>
         <h1>First Name: {this.state.data.fname}</h1>
         <h1>Last Name: {this.state.data.lname}</h1>
@@ -86,16 +86,16 @@ class GeneralInfoV2 extends Component {
         <h1>E-mail Address: {this.state.data.email}</h1>
       </div>;
 
-    let output;
-    if (this.state.displayPretty) {
-      output = GeneralInfoDisplay;
-    } else {
-      output = GeneralInfoForm;
-    }
+    // let output;
+    // if (this.state.displayPretty) {
+    //   output = GeneralInfoDisplay;
+    // } else {
+    //   output = GeneralInfoForm;
+    // }
 
     return(
       <div>
-        {output}
+        {this.state.displayPretty ? generalInfoDisplay : generalInfoForm}
       </div>
     )
   }

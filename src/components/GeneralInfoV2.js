@@ -56,12 +56,22 @@ class GeneralInfoV2 extends Component {
     // console.log(this.state)
   }
 
+  toggleEdit = (e) => {
+    this.setState({
+      inputs: {
+        fname: this.state.data.fname,
+        lname: this.state.data.lname,
+        phoneNum: this.state.data.phoneNum,
+        email: this.state.data.email,
+      },
+      displayPretty: false
+    })
+  }  
+
   render() {
     // const { firstname, outputFirstName } = this.state;
     const generalInfoForm = 
       <form onSubmit={this.onSubmit}>
-        <h1>Your firstname is {this.state.data.fname}</h1>
-        
         <label htmlFor='fname'>First Name:</label>
         <input type='text' id='fname' name='fname' onChange={this.handleChange} value={this.state.inputs.fname}></input>
         
@@ -74,7 +84,7 @@ class GeneralInfoV2 extends Component {
         <label htmlFor='email'>Email Address:</label>
         <input type='text' id='email' name='email'onChange={this.handleChange} value={this.state.inputs.email}></input>
         
-        <button type='submit'>SUBMIT</button>
+        <button type='submit'>Done</button>
       </form>;
 
     // Add an edit button, just setup its own function like onSubmit that only toggles displayPretty
@@ -84,6 +94,7 @@ class GeneralInfoV2 extends Component {
         <h1>Last Name: {this.state.data.lname}</h1>
         <h1>Phone Number: {this.state.data.phoneNum}</h1>
         <h1>E-mail Address: {this.state.data.email}</h1>
+        <button onClick={this.toggleEdit}>Edit</button>
       </div>;
 
     // let output;

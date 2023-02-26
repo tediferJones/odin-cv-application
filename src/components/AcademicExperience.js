@@ -17,9 +17,10 @@ class AcademicExperience extends Component {
         startYear: defaultYear,
         endMonth: defaultMonth,
         endYear: defaultYear,
-      }
-    }
-  }
+        id: uuidv4(),
+      },
+    };
+  };
 
   handleChange = (e) => {
     // console.log(e.target.value)
@@ -33,8 +34,24 @@ class AcademicExperience extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+    const itemToUpdate = this.state.academicHistory.filter((inputs) => inputs.id === this.state.inputs.id)[0];
+    // if ID already exits in academicHistory, update that entry with the new info 
+    if (itemToUpdate) {
+      const newState = this.state.academicHistory.map((inputs) => {
+        if (inputs.id === itemToUpdate.id) {
+          inputs = { ...this.state.inputs }
+        }
+        return inputs
+      });
+      this.setState({
+        academicHistory: newState,
+      })
+    } else {
+      this.setState({
+        academicHistory: this.state.academicHistory.concat(this.state.inputs),
+      });
+    }
     this.setState({
-      academicHistory: this.state.academicHistory.concat(this.state.inputs),
       inputs: {
         name: '',
         description: '',
@@ -42,12 +59,12 @@ class AcademicExperience extends Component {
         startYear: defaultYear,
         endMonth: defaultMonth,
         endYear: defaultYear,
+        id: uuidv4(),
       }
-    });
+    })
   }
 
-  toggleEdit = (e) => {
-    console.log('TOGGLE')
+  toggleForm = (e) => {
     if (this.state.displayPretty) {
       this.setState({ displayPretty: false })
     } else {
@@ -55,14 +72,27 @@ class AcademicExperience extends Component {
     }
   }
 
-  // ADD A FUNCTION DO DELETE SPECIFIC ITEMS FROM academicHistory arr
-  // You will probably need to add the id to each object in the onSubmit func
+  removeItem = (e) => {
+    this.setState({
+      academicHistory: this.state.academicHistory.filter((inputs) => inputs.id !== e.target.value)
+    })
+  }
+
+  editItem = (e) => {
+    const item = this.state.academicHistory.filter((inputs) => inputs.id === e.target.value)[0]
+    this.setState({
+      inputs: {
+        ...item,
+      },
+    })
+  }
 
   render() {
     {/* YOU CANT WRITE FUNCTIONS INSIDE HERE, AND THIS HOW YOU MAKE A JSX COMMENT */}
-    const academicHistoryList = this.state.academicHistory.map((listItem) => <li key={uuidv4()}>{listItem.name} {listItem.description}, {listItem.startMonth} {listItem.startYear} - {listItem.endMonth} {listItem.endYear}</li>);
+    const academicHistoryList = this.state.academicHistory.map((listItem) => <li key={listItem.id}>{listItem.name} {listItem.description}, {listItem.startMonth} {listItem.startYear} - {listItem.endMonth} {listItem.endYear} <button onClick={this.editItem} value={listItem.id}>EDIT</button> <button onClick={this.removeItem} value={listItem.id}>DELETE</button></li>);
     const yearOptions = [...Array(100).keys()].map((i) => <option key={uuidv4()} value={(new Date).getFullYear() - i}>{(new Date).getFullYear() - i}</option>)
     const monthOptions = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'].map((month) => <option key={uuidv4()} value={month}>{month}</option>)
+    const toggleEditButton = <button onClick={this.toggleForm}>{this.state.displayPretty ? 'Edit' : 'Done'}</button>
     
     const academicExperienceForm = 
       <div>
@@ -90,7 +120,6 @@ class AcademicExperience extends Component {
           {/*<select>{yearOptions}</select>*/}
         </form>
       </div>
-    const toggleEditButton = <button onClick={this.toggleEdit}>{this.state.displayPretty ? 'Edit' : 'Done'}</button>
     return(
       <div>
       <ul>{academicHistoryList}</ul>

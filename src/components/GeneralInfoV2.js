@@ -5,9 +5,6 @@ class GeneralInfoV2 extends Component {
     super();
 
     this.state = {
-      // list all data fields we will need
-      // We really dont need inputs and data, on submit we toggle to pretty display mode, so just pretty display the inputs
-      // We'll leave this one as is for now, but try to simplify the next component in this way
       displayPretty: false,
       inputs: {
         fname: '',
@@ -15,12 +12,6 @@ class GeneralInfoV2 extends Component {
         phoneNum: '',
         email: '',
       },
-      data: {
-        fname: '',
-        lname: '',
-        phoneNum: '',
-        email: '',
-      }
     }
   }
 
@@ -33,37 +24,17 @@ class GeneralInfoV2 extends Component {
       [e.target.name]: e.target.value
       }
     })
-    // console.log(this.state.inputs)
   }
 
   onSubmit = (e) => {
     e.preventDefault();
     this.setState({
-      data: {
-        fname: this.state.inputs.fname,
-        lname: this.state.inputs.lname,
-        phoneNum: this.state.inputs.phoneNum,
-        email: this.state.inputs.email,
-      },
-      inputs: {
-        fname: '',
-        lname: '',
-        phoneNum: '',
-        email: '',
-      },
       displayPretty: true
     });
-    // console.log(this.state)
   }
 
   toggleEdit = (e) => {
     this.setState({
-      inputs: {
-        fname: this.state.data.fname,
-        lname: this.state.data.lname,
-        phoneNum: this.state.data.phoneNum,
-        email: this.state.data.email,
-      },
       displayPretty: false
     })
   }  
@@ -87,22 +58,14 @@ class GeneralInfoV2 extends Component {
         <button type='submit'>Done</button>
       </form>;
 
-    // Add an edit button, just setup its own function like onSubmit that only toggles displayPretty
     const generalInfoDisplay =
       <div>
-        <h1>First Name: {this.state.data.fname}</h1>
-        <h1>Last Name: {this.state.data.lname}</h1>
-        <h1>Phone Number: {this.state.data.phoneNum}</h1>
-        <h1>E-mail Address: {this.state.data.email}</h1>
+        <h1>First Name: {this.state.inputs.fname}</h1>
+        <h1>Last Name: {this.state.inputs.lname}</h1>
+        <h1>Phone Number: {this.state.inputs.phoneNum}</h1>
+        <h1>E-mail Address: {this.state.inputs.email}</h1>
         <button onClick={this.toggleEdit}>Edit</button>
       </div>;
-
-    // let output;
-    // if (this.state.displayPretty) {
-    //   output = GeneralInfoDisplay;
-    // } else {
-    //   output = GeneralInfoForm;
-    // }
 
     return(
       <div>

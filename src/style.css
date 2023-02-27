@@ -1,0 +1,49 @@
+:root {
+  --primaryColor: #dfe6e9;
+  --secondaryColor: #b2bec3;
+  --accentColor: #e17055;
+  --darkGrey: #636e72;
+}
+
+body {
+  font-family: Oswald;
+  font-size: 24px;
+  margin: 0;
+  background: var(--secondaryColor);
+}
+
+.header {
+  margin: 0;
+  padding: 1em;
+  background: var(--accentColor);
+}
+
+.content {
+  margin: 2em 4em;
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  background: var(--primaryColor);
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  background: var(--accentColor);
+  border: none;
+  cursor: pointer;
+  font-family: Oswald;
+  font-size: 24px;
+  padding: 0.5em;
+}
+
+input, select {
+  font-family: Oswald;
+  font-size: 24px;
+}
+
+/* FOR academicExperience AND PracticalExperience PUT NAME AND DESCRIPTION ON ONE LINE, PUT DATES, ADD, AND DONE/EDIT ON SECOND LINE */
+/* COLORS TAKEN FROM: https://flatuicolors.com/palette/us  */

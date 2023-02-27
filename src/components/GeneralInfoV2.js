@@ -68,7 +68,7 @@ class GeneralInfoV2 extends Component {
       </div>;
 
     return(
-      <div>
+      <div className='card'>
         {this.state.displayPretty ? generalInfoDisplay : generalInfoForm}
       </div>
     )

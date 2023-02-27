@@ -23,7 +23,6 @@ class AcademicExperience extends Component {
   };
 
   handleChange = (e) => {
-    // console.log(e.target.value)
     this.setState({
       inputs: {
         ...this.state.inputs,
@@ -89,6 +88,7 @@ class AcademicExperience extends Component {
 
   render() {
     {/* YOU CANT WRITE FUNCTIONS INSIDE HERE, AND THIS HOW YOU MAKE A JSX COMMENT */}
+    {/* CONVERT academicHistoryList to multi-line function, like in practicalExperience.js */}
     const academicHistoryList = this.state.academicHistory.map((listItem) => <li key={listItem.id}>{listItem.name} {listItem.description}, {listItem.startMonth} {listItem.startYear} - {listItem.endMonth} {listItem.endYear} <button onClick={this.editItem} value={listItem.id}>EDIT</button> <button onClick={this.removeItem} value={listItem.id}>DELETE</button></li>);
     const yearOptions = [...Array(100).keys()].map((i) => <option key={uuidv4()} value={(new Date).getFullYear() - i}>{(new Date).getFullYear() - i}</option>)
     const monthOptions = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'].map((month) => <option key={uuidv4()} value={month}>{month}</option>)
@@ -96,7 +96,6 @@ class AcademicExperience extends Component {
     
     const academicExperienceForm = 
       <div>
-        {/* <h1>{JSON.stringify(this.state.academicHistory)}</h1> */}
         <form onSubmit={this.onSubmit}>
           <label htmlFor='name'>Name of Institution:</label> 
           <input type='text' id='name' name='name' onChange={this.handleChange} value={this.state.inputs.name}></input>
@@ -117,7 +116,6 @@ class AcademicExperience extends Component {
           <select id='endYear' name='endYear' onChange={this.handleChange} value={this.state.inputs.endYear}>{yearOptions}</select>
 
           <button type='submit'>ADD</button>
-          {/*<select>{yearOptions}</select>*/}
         </form>
       </div>
     return(

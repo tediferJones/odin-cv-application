@@ -41,30 +41,32 @@ class GeneralInfoV2 extends Component {
 
   render() {
     // const { firstname, outputFirstName } = this.state;
+    {/* className='generalInfoForm' */}
     const generalInfoForm = 
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit} className='generalInfoForm'>
         <label htmlFor='fname'>First Name:</label>
         <input type='text' id='fname' name='fname' onChange={this.handleChange} value={this.state.inputs.fname}></input>
-        
+
         <label htmlFor='lname'>Last Name:</label>
         <input type='text' id='lname' name='lname' onChange={this.handleChange} value={this.state.inputs.lname}></input>
-        
+       
         <label htmlFor='phoneNum'>Phone Number:</label>
         <input type='text' id='phoneNum' name='phoneNum' onChange={this.handleChange} value={this.state.inputs.phoneNum}></input>
         
         <label htmlFor='email'>Email Address:</label>
         <input type='text' id='email' name='email'onChange={this.handleChange} value={this.state.inputs.email}></input>
         
-        <button type='submit'>Done</button>
+        <button type='submit' className='generalInfoSubmitButton'>Done</button>
       </form>;
 
     const generalInfoDisplay =
-      <div>
-        <h1>First Name: {this.state.inputs.fname}</h1>
-        <h1>Last Name: {this.state.inputs.lname}</h1>
-        <h1>Phone Number: {this.state.inputs.phoneNum}</h1>
-        <h1>E-mail Address: {this.state.inputs.email}</h1>
-        <button onClick={this.toggleEdit}>Edit</button>
+      <div className='generalInfoDisplay'>
+        {/* <h1>First Name: {this.state.inputs.fname}</h1>
+        <h1>Last Name: {this.state.inputs.lname}</h1> */}
+        <h1 className='manualMargin'>{this.state.inputs.fname} {this.state.inputs.lname}</h1>
+        <h3 className='manualMargin'>Phone Number: {this.state.inputs.phoneNum}</h3>
+        <h4 className='manualMargin'>E-mail Address: {this.state.inputs.email}</h4>
+        <button onClick={this.toggleEdit} className='hidden'>Edit</button>
       </div>;
 
     return(

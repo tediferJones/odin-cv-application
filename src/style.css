@@ -19,7 +19,7 @@ body {
 }
 
 .content {
-  margin: 2em 4em;
+  margin: 2em 10em;
   display: flex;
   flex-direction: column;
 }
@@ -31,6 +31,58 @@ body {
   flex-direction: column;
 }
 
+.hidden {
+  align-self: flex-end;
+}
+
+.verticalInputLabel {
+  display: flex;
+  flex-direction: column;
+}
+
+.horizontalInputLabel {
+  display: flex;
+  justify-content: space-around;
+}
+
+.generalInfoForm {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1em;
+}
+
+.generalInfoDisplay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.generalInfoSubmitButton {
+  grid-column-start: 1;
+  grid-column-end: 5;
+}
+
+.manualMargin {
+  margin: 0;
+}
+
+.gridContainer {
+  padding: 1em 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  {/* justify-items: center; */}
+}
+
+.addButton {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
 button {
   background: var(--accentColor);
   border: none;
@@ -39,6 +91,20 @@ button {
   font-size: 24px;
   padding: 0.5em;
 }
+
+label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+/*
+select {
+  flex-grow: 1;
+}
+*/
 
 input, select {
   font-family: Oswald;

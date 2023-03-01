@@ -90,7 +90,7 @@ class AcademicExperience extends Component {
     {/* YOU CANT WRITE FUNCTIONS INSIDE HERE, AND THIS HOW YOU MAKE A JSX COMMENT */}
     const yearOptions = [...Array(100).keys()].map((i) => <option key={uuidv4()} value={(new Date()).getFullYear() - i}>{(new Date()).getFullYear() - i}</option>)
     const monthOptions = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'].map((month) => <option key={uuidv4()} value={month}>{month}</option>)
-    const toggleEditButton = <button onClick={this.toggleForm}>{this.state.displayPretty ? 'Edit' : 'Done'}</button>
+    const toggleEditButton = <button onClick={this.toggleForm} className={this.state.displayPretty ? 'hidden' : ''}>{this.state.displayPretty ? 'Edit' : 'Done'}</button>
     const academicHistoryList = this.state.academicHistory.map((listItem) => {
       return(
         <li key={listItem.id}>
@@ -101,29 +101,67 @@ class AcademicExperience extends Component {
       });
     const academicExperienceForm = 
       <form onSubmit={this.onSubmit}>
-        <label htmlFor='name'>Name of Institution:</label> 
-        <input type='text' id='name' name='name' onChange={this.handleChange} value={this.state.inputs.name}></input>
+        <div className='verticalInputLabel'>
+          <label htmlFor='name'>Name of Institution:</label> 
+          <input type='text' id='name' name='name' onChange={this.handleChange} value={this.state.inputs.name}></input>
+        </div>
 
-        <label htmlFor='description'>Type of Study:</label>
-        <input type='textarea' id='description' name='description' onChange={this.handleChange} value={this.state.inputs.description}></input>
+        <div className='verticalInputLabel'>
+          <label htmlFor='description'>Type of Study:</label>
+          <input type='textarea' id='description' name='description' onChange={this.handleChange} value={this.state.inputs.description}></input>
+        </div>
 
-        <label htmlFor='startMonth'>Start Month:</label>
-        <select id='startMonth' name='startMonth' onChange={this.handleChange} value={this.state.inputs.startMonth}>{monthOptions}</select>
+        <div className='verticalInputLabel'>        
+          <div className='gridContainer'>
+                <label htmlFor='startMonth'>Start Month:</label>
+                <select id='startMonth' name='startMonth' onChange={this.handleChange} value={this.state.inputs.startMonth}>{monthOptions}</select>
 
-        <label htmlFor='startYear'>Start Year:</label>
-        <select id='startYear' name='startYear' onChange={this.handleChange} value={this.state.inputs.startYear}>{yearOptions}</select>
+                <label htmlFor='startYear'>Start Year:</label>
+                <select id='startYear' name='startYear' onChange={this.handleChange} value={this.state.inputs.startYear}>{yearOptions}</select>
 
-        <label htmlFor='endMonth'>End Month:</label>
-        <select id='endMonth' name='endMonth' onChange={this.handleChange} value={this.state.inputs.endMonth}>{monthOptions}</select>
+                <label htmlFor='endMonth'>End Month:</label>
+                <select id='endMonth' name='endMonth' onChange={this.handleChange} value={this.state.inputs.endMonth}>{monthOptions}</select>
 
-        <label htmlFor='endYear'>End Year:</label>
-        <select id='endYear' name='endYear' onChange={this.handleChange} value={this.state.inputs.endYear}>{yearOptions}</select>
+                <label htmlFor='endYear'>End Year:</label>
+                <select id='endYear' name='endYear' onChange={this.handleChange} value={this.state.inputs.endYear}>{yearOptions}</select>
 
-        <button type='submit'>ADD</button>
+            <button type='submit' className='addButton'>ADD</button>
+          </div>
+        </div>
+
+        {/* <div className='verticalInputLabel'>
+          <div className='horizontalInputLabel idk'>
+            <div className='verticalInputLabel'>
+              <div className='horizontalInputLabel'>
+              <div className='horizontalInputLabel'>
+                <label htmlFor='startMonth'>Start Month:</label>
+                <select id='startMonth' name='startMonth' onChange={this.handleChange} value={this.state.inputs.startMonth}>{monthOptions}</select>
+              </div>
+
+              <div className='horizontalInputLabel'>
+                <label htmlFor='startYear'>Start Year:</label>
+                <select id='startYear' name='startYear' onChange={this.handleChange} value={this.state.inputs.startYear}>{yearOptions}</select>
+              </div>
+              </div>
+
+              <div className='horizontalInputLabel'>
+                <label htmlFor='endMonth'>End Month:</label>
+                <select id='endMonth' name='endMonth' onChange={this.handleChange} value={this.state.inputs.endMonth}>{monthOptions}</select>
+              </div>
+
+              <div className='horizontalInputLabel'>
+                <label htmlFor='endYear'>End Year:</label>
+                <select id='endYear' name='endYear' onChange={this.handleChange} value={this.state.inputs.endYear}>{yearOptions}</select>
+              </div>
+            </div>
+
+            <button type='submit'>ADD</button>
+          </div>
+        </div> */}
       </form>
     return(
       <div className='card'>
-        <ul>{academicHistoryList}</ul>
+        {this.state.academicHistory.length ? <ul>{academicHistoryList}</ul> : []}
         {this.state.displayPretty ? [] : academicExperienceForm}
         {toggleEditButton}
       </div>

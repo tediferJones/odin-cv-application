@@ -85,6 +85,10 @@ class PracticalExperience extends Component {
     });
   }
 
+//          {listItem.name} {listItem.description}, {listItem.startMonth} {listItem.startYear} - {listItem.endMonth} {listItem.endYear}
+//          <button onClick={this.editItem} value={listItem.id}>EDIT</button>
+//          <button onClick={this.removeItem} value={listItem.id}>DELETE</button>
+
   render() {
     const yearOptions = [...Array(100).keys()].map((i) => <option key={uuidv4()} value={(new Date()).getFullYear() - i}>{(new Date()).getFullYear() - i}</option>)
     const monthOptions = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'].map((month) => <option key={uuidv4()} value={month}>{month}</option>)
@@ -92,22 +96,28 @@ class PracticalExperience extends Component {
     const practicalHistoryList = this.state.practicalHistory.map((listItem) => {
       return( 
         <li key={listItem.id}>
-          {listItem.name} {listItem.description}, {listItem.startMonth} {listItem.startYear} - {listItem.endMonth} {listItem.endYear}
-          <button onClick={this.editItem} value={listItem.id}>EDIT</button>
-          <button onClick={this.removeItem} value={listItem.id}>DELETE</button>
+        <div className='displayTitleBar'>
+          <h3>{listItem.name}</h3>
+          <h4>{listItem.startMonth} {listItem.startYear} - {listItem.endMonth} {listItem.endYear}</h4>
+        </div>
+        <p>{listItem.description}</p>
+        {this.state.displayPretty ? [] : <div className='buttonContainer'>
+          <button onClick={this.editItem} value={listItem.id}>Edit</button>
+          <button onClick={this.removeItem} value={listItem.id}>Delete</button>
+        </div>}
         </li>
       )
     })
     const practicalExperienceForm =
       <form onSubmit={this.onSubmit}>
         <div className='verticalInputLabel'>
-          <label htmlFor='name'>Name of Company:</label> 
+          <label className='alignLeft' htmlFor='name'>Name of Company:</label> 
           <input type='text' id='name' name='name' onChange={this.handleChange} value={this.state.inputs.name}></input>
         </div>
 
         <div className='verticalInputLabel'>
-          <label htmlFor='description'>Description of Duties:</label>
-          <input type='textarea' id='description' name='description' onChange={this.handleChange} value={this.state.inputs.description}></input>
+          <label className='alignLeft' htmlFor='description'>Description of Duties:</label>
+          <textarea id='description' name='description' rows={4} onChange={this.handleChange} value={this.state.inputs.description}></textarea>
         </div>
 
         <div className='verticalInputLabel'>
@@ -131,6 +141,7 @@ class PracticalExperience extends Component {
     
     return(
       <div className='card'>
+        <h2>Practical Experience</h2>
         {this.state.practicalHistory.length ? <ul>{practicalHistoryList}</ul> : []}
         {this.state.displayPretty ? [] : practicalExperienceForm}
         {toggleEditButton}

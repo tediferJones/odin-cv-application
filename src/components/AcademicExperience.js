@@ -85,7 +85,7 @@ class AcademicExperience extends Component {
       },
     })
   }
-
+  // {listItem.name} {listItem.description}, {listItem.startMonth} {listItem.startYear} - {listItem.endMonth} {listItem.endYear}
   render() {
     {/* YOU CANT WRITE FUNCTIONS INSIDE HERE, AND THIS HOW YOU MAKE A JSX COMMENT */}
     const yearOptions = [...Array(100).keys()].map((i) => <option key={uuidv4()} value={(new Date()).getFullYear() - i}>{(new Date()).getFullYear() - i}</option>)
@@ -94,73 +94,51 @@ class AcademicExperience extends Component {
     const academicHistoryList = this.state.academicHistory.map((listItem) => {
       return(
         <li key={listItem.id}>
-          {listItem.name} {listItem.description}, {listItem.startMonth} {listItem.startYear} - {listItem.endMonth} {listItem.endYear}
-          <button onClick={this.editItem} value={listItem.id}>EDIT</button>
-          <button onClick={this.removeItem} value={listItem.id}>DELETE</button>
+          <div className='displayTitleBar'>
+            <h3>{listItem.name}</h3>
+            <h4>{listItem.startMonth} {listItem.startYear} - {listItem.endMonth} {listItem.endYear}</h4>
+          </div>
+          <p>{listItem.description}</p>
+          {this.state.displayPretty ? [] : <div className='buttonContainer'>
+            <button onClick={this.editItem} value={listItem.id}>Edit</button>
+            <button onClick={this.removeItem} value={listItem.id}>Delete</button>
+          </div>}
         </li>)
       });
     const academicExperienceForm = 
       <form onSubmit={this.onSubmit}>
         <div className='verticalInputLabel'>
-          <label htmlFor='name'>Name of Institution:</label> 
+          <label className='alignLeft' htmlFor='name'>Name of Institution:</label> 
           <input type='text' id='name' name='name' onChange={this.handleChange} value={this.state.inputs.name}></input>
         </div>
 
         <div className='verticalInputLabel'>
-          <label htmlFor='description'>Type of Study:</label>
-          <input type='textarea' id='description' name='description' onChange={this.handleChange} value={this.state.inputs.description}></input>
+          <label className='alignLeft' htmlFor='description'>Type of Study:</label>
+          <textarea id='description' name='description' rows={4} onChange={this.handleChange} value={this.state.inputs.description}></textarea>
         </div>
 
         <div className='verticalInputLabel'>        
           <div className='gridContainer'>
-                <label htmlFor='startMonth'>Start Month:</label>
-                <select id='startMonth' name='startMonth' onChange={this.handleChange} value={this.state.inputs.startMonth}>{monthOptions}</select>
+            <label htmlFor='startMonth'>Start Month:</label>
+            <select id='startMonth' name='startMonth' onChange={this.handleChange} value={this.state.inputs.startMonth}>{monthOptions}</select>
 
-                <label htmlFor='startYear'>Start Year:</label>
-                <select id='startYear' name='startYear' onChange={this.handleChange} value={this.state.inputs.startYear}>{yearOptions}</select>
+            <label htmlFor='startYear'>Start Year:</label>
+            <select id='startYear' name='startYear' onChange={this.handleChange} value={this.state.inputs.startYear}>{yearOptions}</select>
 
-                <label htmlFor='endMonth'>End Month:</label>
-                <select id='endMonth' name='endMonth' onChange={this.handleChange} value={this.state.inputs.endMonth}>{monthOptions}</select>
+            <label htmlFor='endMonth'>End Month:</label>
+            <select id='endMonth' name='endMonth' onChange={this.handleChange} value={this.state.inputs.endMonth}>{monthOptions}</select>
 
-                <label htmlFor='endYear'>End Year:</label>
-                <select id='endYear' name='endYear' onChange={this.handleChange} value={this.state.inputs.endYear}>{yearOptions}</select>
+            <label htmlFor='endYear'>End Year:</label>
+            <select id='endYear' name='endYear' onChange={this.handleChange} value={this.state.inputs.endYear}>{yearOptions}</select>
 
-            <button type='submit' className='addButton'>ADD</button>
+            <button type='submit' className='addButton'>Add</button>
           </div>
         </div>
-
-        {/* <div className='verticalInputLabel'>
-          <div className='horizontalInputLabel idk'>
-            <div className='verticalInputLabel'>
-              <div className='horizontalInputLabel'>
-              <div className='horizontalInputLabel'>
-                <label htmlFor='startMonth'>Start Month:</label>
-                <select id='startMonth' name='startMonth' onChange={this.handleChange} value={this.state.inputs.startMonth}>{monthOptions}</select>
-              </div>
-
-              <div className='horizontalInputLabel'>
-                <label htmlFor='startYear'>Start Year:</label>
-                <select id='startYear' name='startYear' onChange={this.handleChange} value={this.state.inputs.startYear}>{yearOptions}</select>
-              </div>
-              </div>
-
-              <div className='horizontalInputLabel'>
-                <label htmlFor='endMonth'>End Month:</label>
-                <select id='endMonth' name='endMonth' onChange={this.handleChange} value={this.state.inputs.endMonth}>{monthOptions}</select>
-              </div>
-
-              <div className='horizontalInputLabel'>
-                <label htmlFor='endYear'>End Year:</label>
-                <select id='endYear' name='endYear' onChange={this.handleChange} value={this.state.inputs.endYear}>{yearOptions}</select>
-              </div>
-            </div>
-
-            <button type='submit'>ADD</button>
-          </div>
-        </div> */}
       </form>
+
     return(
       <div className='card'>
+        <h2>Academic Experience</h2>
         {this.state.academicHistory.length ? <ul>{academicHistoryList}</ul> : []}
         {this.state.displayPretty ? [] : academicExperienceForm}
         {toggleEditButton}

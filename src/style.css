@@ -3,6 +3,7 @@
   --secondaryColor: #b2bec3;
   --accentColor: #e17055;
   --darkGrey: #636e72;
+  --accentHighlightColor: #d54826;
 }
 
 body {
@@ -19,7 +20,7 @@ body {
 }
 
 .content {
-  margin: 2em 10em;
+  margin: 2em clamp(2em, 8em, 12em);
   display: flex;
   flex-direction: column;
 }
@@ -92,13 +93,38 @@ button {
   padding: 0.5em;
 }
 
+button:hover {
+  background: var(--accentHighlightColor);
+}
+
 label {
+  font-size: 28px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.displayTitleBar {
+  display: flex;
+  justify-content: space-between;
+}
 
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1em;
+}
+
+li p {
+  margin-top: 0; 
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.alignLeft {
+  align-self: flex-start;
+}
 
 /*
 select {
@@ -106,9 +132,15 @@ select {
 }
 */
 
-input, select {
+input, select, textarea {
   font-family: Oswald;
   font-size: 24px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 /* FOR academicExperience AND PracticalExperience PUT NAME AND DESCRIPTION ON ONE LINE, PUT DATES, ADD, AND DONE/EDIT ON SECOND LINE */

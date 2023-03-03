@@ -32,7 +32,7 @@ class GeneralInfoV2 extends Component {
       displayPretty: true
     });
   }
-
+  // COMBINE THESE FUNCTIONS
   toggleEdit = (e) => {
     this.setState({
       displayPretty: false
@@ -43,19 +43,20 @@ class GeneralInfoV2 extends Component {
     // const { firstname, outputFirstName } = this.state;
     {/* className='generalInfoForm' */}
     const generalInfoForm = 
-      <form onSubmit={this.onSubmit} className='generalInfoForm'>
-        <label htmlFor='fname'>First Name:</label>
-        <input type='text' id='fname' name='fname' onChange={this.handleChange} value={this.state.inputs.fname}></input>
+      <form onSubmit={this.onSubmit} className='verticalInputLabel'>
+          <h2 className='sectionTitle'>General Information</h2>
+          <label className='alignLeft' htmlFor='fname'>First Name:</label>
+          <input type='text' id='fname' name='fname' onChange={this.handleChange} value={this.state.inputs.fname}></input>
 
-        <label htmlFor='lname'>Last Name:</label>
-        <input type='text' id='lname' name='lname' onChange={this.handleChange} value={this.state.inputs.lname}></input>
-       
-        <label htmlFor='phoneNum'>Phone Number:</label>
-        <input type='text' id='phoneNum' name='phoneNum' onChange={this.handleChange} value={this.state.inputs.phoneNum}></input>
+          <label className='alignLeft' htmlFor='lname'>Last Name:</label>
+          <input type='text' id='lname' name='lname' onChange={this.handleChange} value={this.state.inputs.lname}></input>
+
+          <label className='alignLeft' htmlFor='phoneNum'>Phone Number:</label>
+          <input type='text' id='phoneNum' name='phoneNum' onChange={this.handleChange} value={this.state.inputs.phoneNum}></input>
         
-        <label htmlFor='email'>Email Address:</label>
-        <input type='text' id='email' name='email'onChange={this.handleChange} value={this.state.inputs.email}></input>
-        
+          <label className='alignLeft' htmlFor='email'>Email Address:</label>
+          <input type='text' id='email' name='email'onChange={this.handleChange} value={this.state.inputs.email}></input>
+
         <button type='submit' className='generalInfoSubmitButton'>Done</button>
       </form>;
 

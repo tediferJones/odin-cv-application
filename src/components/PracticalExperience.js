@@ -141,7 +141,7 @@ class PracticalExperience extends Component {
     
     return(
       <div className='card'>
-        <h2>Practical Experience</h2>
+        <h2 className='sectionTitle'>Practical Experience</h2>
         {this.state.practicalHistory.length ? <ul>{practicalHistoryList}</ul> : []}
         {this.state.displayPretty ? [] : practicalExperienceForm}
         {toggleEditButton}

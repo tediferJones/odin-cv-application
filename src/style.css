@@ -20,7 +20,7 @@ body {
 }
 
 .content {
-  margin: 2em clamp(2em, 8em, 12em);
+  margin: 2em 8em;
   display: flex;
   flex-direction: column;
 }
@@ -30,6 +30,10 @@ body {
   padding: 1em;
   display: flex;
   flex-direction: column;
+}
+
+.sectionTitle {
+  margin-top: 0;
 }
 
 .hidden {
@@ -47,10 +51,16 @@ body {
 }
 
 .generalInfoForm {
+  /* display: flex;
+  justify-content: space-evenly; */
+  /* CONVERT TO A FLEX CONTAINER, grid does not react well to skinny windows */
+  /* we want a container that will turn into a vertical list if the width is small enough */
+  /*
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 1em;
+  */
 }
 
 .generalInfoDisplay {
@@ -61,6 +71,7 @@ body {
 }
 
 .generalInfoSubmitButton {
+  margin: 1em 0;
   grid-column-start: 1;
   grid-column-end: 5;
 }

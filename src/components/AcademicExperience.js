@@ -138,7 +138,7 @@ class AcademicExperience extends Component {
 
     return(
       <div className='card'>
-        <h2>Academic Experience</h2>
+        <h2 className='sectionTitle'>Academic Experience</h2>
         {this.state.academicHistory.length ? <ul>{academicHistoryList}</ul> : []}
         {this.state.displayPretty ? [] : academicExperienceForm}
         {toggleEditButton}
